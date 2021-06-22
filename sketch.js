@@ -3,6 +3,7 @@ var ground ;
 var banana ,bananaImage, obstacle, obstacleImage
 var FoodGroup, obstacleGroup
 var survivaltime=0;
+var gameState = 1;
 function preload(){
   createCanvas(400,400);
   
@@ -30,6 +31,7 @@ function setup() {
 
 function draw() {
   background(200,200,255);
+  if(gameState === 1){
   if (keyDown("space")&&monkey.y>=300) {
     monkey.velocityY=-20;
   }
@@ -43,12 +45,21 @@ function draw() {
   monkey.x += 2;
   food();
   obstacles();
+  fill(0);
   textSize(20);
   survivaltime=Math.ceil(frameCount/frameRate());
   text("Survival Time : "+ survivaltime,monkey.x-50,50);
   
+  if (obstacleGroup.isTouching(monkey)){
+    gameState = 0;
+  }
+  }else {
+    textSize(20);
+    text("Game Over",camera.x-200,200);
+  }
+
   drawSprites();  
-  
+
 }
 function food (){ 
   if (frameCount%80===0){
