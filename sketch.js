@@ -52,19 +52,19 @@ function draw() {
 }
 function food (){ 
   if (frameCount%80===0){
-    banana=createSprite(monkey.x+200,0,10,10);
+    banana=createSprite(camera.x+200,0,10,10);
     banana.scale=0.08;
     banana.y=Math.round(random(120,200));
     banana.addImage(bananaImage);
     //banana.velocityX=-5;
     banana.lifetime=200;
     FoodGroup.add(banana);
-    console.log("banana "+banana.x,"monkey "+monkey.x);
+    console.log("banana "+banana.x,", camera "+camera.x);
   }
 }
 function obstacles(){
   if (frameCount%300===0){
-    var stone=createSprite(monkey.x+200,330,10,10);
+    var stone=createSprite(camera.x+200,330,10,10);
     stone.scale=0.1;
     stone.addImage(obstaceImage);
     //stone.velocityX=-5;
